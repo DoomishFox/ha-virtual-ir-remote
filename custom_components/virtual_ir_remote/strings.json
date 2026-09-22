@@ -1,0 +1,107 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "A remote is already linked to this IR blaster.",
+      "reconfigure_successful": "Remote reconfigured successfully."
+    },
+    "error": {
+      "already_configured": "A Remote is already linked to this IR blaster.",
+      "unsupported_device": "The selected device does not provide exactly one enabled MQTT infrared emitter entity."
+    },
+    "initiate_flow": {
+      "user": "Add remote"
+    },
+    "step": {
+      "reconfigure": {
+        "data": {
+          "device_id": "MQTT IR blaster"
+        },
+        "description": "Select an MQTT device with an infrared emitter. Each device can have one virtual remote, with named commands grouped by virtual device.",
+        "data_description": {
+          "device_id": "Select the MQTT device whose infrared emitter will send commands."
+        }
+      },
+      "user": {
+        "data": {
+          "device_id": "MQTT IR blaster"
+        },
+        "description": "Select an MQTT device with an infrared emitter. Each device can have one virtual remote, with named commands grouped by virtual device.",
+        "data_description": {
+          "device_id": "Select the MQTT device whose infrared emitter will send commands."
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "command": {
+      "abort": {
+        "reconfigure_successful": "Command reconfigured successfully."
+      },
+      "entry_type": "Virtual device — command",
+      "error": {
+        "already_configured": "A command with this name or one of these actions is already configured for the selected remote and device.",
+        "invalid_command": "Enter valid values for the selected IR protocol."
+      },
+      "initiate_flow": {
+        "user": "Add command"
+      },
+      "step": {
+        "reconfigure": {
+          "data": {
+            "address": "Address (hexadecimal byte)",
+            "command_actions": "Use for actions",
+            "command_bytes": "Command bytes (comma-separated hexadecimal values)",
+            "command_name": "Command name",
+            "device": "Virtual device",
+            "protocol": "IR protocol"
+          },
+          "description": "Configure a command for {remote}. Use a virtual device name such as Fan or TV to group commands. NEC48 requires a one-byte address and exactly two command bytes. A toggle command can be assigned to both power actions."
+        },
+        "user": {
+          "data": {
+            "address": "Address (hexadecimal byte)",
+            "command_actions": "Use for actions",
+            "command_bytes": "Command bytes (comma-separated hexadecimal values)",
+            "command_name": "Command name",
+            "device": "Virtual device",
+            "protocol": "IR protocol"
+          },
+          "description": "Configure a command for {remote}. Use a virtual device name such as Fan or TV to group commands. NEC48 requires a one-byte address and exactly two command bytes. A toggle command can be assigned to both power actions."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "activity_required": {
+      "message": "Specify the device to control in the activity field."
+    },
+    "blaster_unavailable": {
+      "message": "The selected MQTT IR blaster is unavailable."
+    },
+    "command_not_found": {
+      "message": "Command {command} was not found for device {device}."
+    },
+    "device_action_not_configured": {
+      "message": "No command is configured for the selected action on device {device}."
+    },
+    "device_required": {
+      "message": "A device must be specified when sending a command."
+    },
+    "invalid_command_configuration": {
+      "message": "Command {command} for device {device} has invalid stored configuration. Reconfigure the command before trying again."
+    }
+  },
+  "selector": {
+    "command_actions": {
+      "options": {
+        "turn_off": "Turn off action",
+        "turn_on": "Turn on action"
+      }
+    },
+    "protocol": {
+      "options": {
+        "nec48": "NEC48"
+      }
+    }
+  }
+}

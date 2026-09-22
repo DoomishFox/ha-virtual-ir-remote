@@ -1,0 +1,21 @@
+{
+  "domain": "virtual_ir_remote",
+  "name": "Virtual IR Remote",
+  "codeowners": [
+    "@DoomishFox"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "infrared",
+    "mqtt"
+  ],
+  "documentation": "https://github.com/DoomishFox/ha-virtual-ir-remote",
+  "homekit": {},
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/DoomishFox/ha-virtual-ir-remote/issues",
+  "requirements": [],
+  "ssdp": [],
+  "version": "1.0.0",
+  "zeroconf": []
+}
