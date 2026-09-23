@@ -11,7 +11,7 @@
                 "sync",
                 "--locked"
             ],
-            "problemMatcher": []
+            "problemMatcher": "$python",
         },
         {
             "label": "pytest",
@@ -21,8 +21,22 @@
                 "run",
                 "--locked",
                 "pytest",
-                "--cov"
-            ]
+                "--cov",
+                "--tb=native"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": "$python",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
         },
         {
             "label": "ruff",
@@ -33,7 +47,8 @@
                 "--locked",
                 "ruff",
                 "check"
-            ]
+            ],
+            "problemMatcher": "$python",
         }
     ]
 }
