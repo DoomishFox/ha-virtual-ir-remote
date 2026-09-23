@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+import tomllib
 
 from awesomeversion import AwesomeVersion
 from homeassistant import config_entries, loader
@@ -15,7 +16,11 @@ INTEGRATION = ROOT / "custom_components/virtual_ir_remote"
 def test_distribution_metadata() -> None:
     """The HACS package is self-contained and ships its UI translations."""
     manifest = json.loads((INTEGRATION / "manifest.json").read_text())
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
     hacs = json.loads((ROOT / "hacs.json").read_text())
+    assert project["version"] == manifest["version"]
+    assert project["urls"]["Homepage"] == manifest["documentation"]
+    assert project["urls"]["Issues"] == manifest["issue_tracker"]
     assert manifest["domain"] == "virtual_ir_remote"
     assert manifest["name"] == hacs["name"] == "Virtual IR Remote"
     assert AwesomeVersion(manifest["version"]).valid

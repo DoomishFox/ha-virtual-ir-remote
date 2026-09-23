@@ -1,2 +1,0 @@
-pytest-homeassistant-custom-component==0.13.366
-infrared-protocols==9.0.0

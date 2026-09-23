@@ -83,19 +83,34 @@ runtime files HACS installs. They use
 and exercise this repository's `custom_components.virtual_ir_remote` directly;
 no Home Assistant Core source checkout or real MQTT broker is needed.
 
-With Python 3.14, run from this repository root:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run
+from this repository root:
 
 ```sh
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements_test.txt
-python3 -m pytest --cov --cov-report=term-missing
+uv sync --locked
+uv run --locked pytest --cov --cov-report=term-missing
+uv run --locked ruff check .
 ```
+
+uv uses the Python 3.14 version specified in `.python-version`, downloading it
+when necessary, and manages the project's `.venv`. No manual activation is needed.
+`pyproject.toml` declares the `test` and `lint` dependency groups; the default
+`dev` group includes both. `uv.lock` pins the resolved dependencies for local
+development and CI. After editing dependency declarations, run `uv lock`, rerun
+the checks, and commit both configuration and lockfile.
+
+If using pip instead, create a Python 3.14 virtual environment and use pip 25.1+
+with `python3 -m pip install --group dev`, then `python3 -m pytest`.
+This alternative does not use the uv lockfile.
 
 The pinned harness currently installs Home Assistant 2026.9.3. This is the
 standalone regression-test baseline; the conservative HACS minimum remains
 2026.10.0. Update the harness pin deliberately when adopting newer Core APIs.
 Tests disable network sockets and mock MQTT discovery and command publishing.
+
+This is a non-packaged uv project: HACS installs the integration directory,
+not a wheel. Runtime dependencies remain controlled by Home Assistant and the
+integration's `manifest.json`. Keep the project version aligned with that manifest.
 
 Coverage includes NEC48 encoding, emitter selection, config and command flows,
 entity renames and availability, power actions, error handling, lifecycle, and
